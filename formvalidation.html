@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>World Capitals Quiz Sign Up Form</title>
+    <link rel="stylesheet" type="text/css" href="css/Styles1.css">
+<style>
+
+	
+body
+{
+	background-image: url("img/flags.jpg");
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+	background-size: 1400px 950px;
+	padding-top: 10px;
+    padding-right: 100px;
+    padding-bottom: 10px;
+    padding-left: 200px;
+	font-family: 'Ariel', sans-serif;
+	font-size: 25px;
+}
+
+</style> 
+	</head>
+  <body>
+    <div id="content">
+      <div>
+        <h1 id="banner">To Continue To The Quiz Please Fill Out This Form</h1>
+      </div>
+       <div class="formLayout">
+          <form id="myForm" method="post" action="quiz.html" onsubmit="return validate(this)">
+		  
+		  
+            <label>First name</label>
+              <input type="text" maxlength="12" name="First Name" style="margin-left: 16px"><br><br>
+			  
+			  
+            <label>Surname</label>
+              <td><input type="text" maxlength="20" name="Surname" style="margin-left: 36px"><br><br>
+			  
+			  
+            <label>Age</label>
+              <input type="text" maxlength="2"  name="Age"  style="margin-left: 90px"><br><br>
+			  
+			  
+            <label>GMIT Email</label>
+              <input type="text" maxlength="19" name="GMIT E-mail"><br><br>
+			  
+			  
+              <div id="button">
+            	 <href="/quiz.html"> <input  type="submit" value="ENTER">
+           			 </div>
+          </form>
+        </div>
+    </div>
+</body>
+<script src="js/validate.js"></script>
+</html>

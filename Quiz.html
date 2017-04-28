@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<style>
+
+
+div#test
+{ 
+	border:#24D13B 40px groove;
+	padding:30px 30px 30px 30px;
+	margin-top: 75px;
+    margin-bottom: 300px;
+    margin-right: 200px;
+	
+}
+	
+body
+{
+	background-image: url("img/flags.jpg");
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+	background-size: 1400px 950px;
+	padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 200px;
+	font-family: 'Ariel', sans-serif;
+	font-color: #24D13B;
+	font-size: 30px;
+}
+#test_status
+{
+	color: #24D13B;
+	font-family: 'Ariel', sans-serif;
+	font-size: 50px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	line-height: 1;
+	
+}
+
+
+</style> 
+<script>
+var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, correct = 0;
+var questions = [ 		////Questions array
+    [ "What is the capital of Denmark?", "Prague", "Stolkholm", "Copenhagen", "Oslo", "C" ],
+	[ "What is the capital of Peru?", "Sofia", "Bucharest", "Lima", "Jakarta", "C" ],
+	[ "What is the capital of Switzerland?", "Bern", "Dublin", "Vienna", "Kabul", "A" ],
+	[ "What is the capital of the USA?", "New York", "L.A", "Boston", "Washington D.C", "D" ],
+	[ "What is the capital of Vietnam?", "Toyko", "Seoul", "Adis Ababa", "Hanoi", "D" ],
+	[ "What is the capital of Serbia?", "Belgrade", "Moscow", "Madrid", "Galway", "A"],
+	[ "What is the capital of Ireland?", "Belfast", "Athlone", "Castlebar", "Dublin", "D" ],
+	[ "What is the capital of Wales?", "Swansea", "Cardiff", "Glasgow", "Newcastle", "C" ],
+	[ "What is the capital of England?", "London", "Sheffield", "Nottingham", "Birmingham", "A"],
+	[ "What is the capital of France?", "Monaco", "Nice", "Lyon", "Paris", "D" ],
+	[ "What is the capital of Spain?", "Madrid", "Sevilla", "Barcalona", "Malaga", "A" ],
+	[ "What is the capital of Cyprus?", "Nicosia", "Stolkholm", "Sligo", "Cairo", "A"],
+	[ "What is the capital of Germany?", "Frankfurt", "Dortmund", "Berlin", "Munich", "C"], 
+	[ "What is the capital of Greece?", "Zagreab", "Carlow", "Athens", "Mullingar", "C"],
+	[ "What is the capital of Canada?", "Ottawa", "Vancover", "Mexico City", "Toronto", "A"],
+	[ "What is the capital of Ukraine?", "St. Petersburg", "Kiev", "Lisbon", "Manchester", "B"],
+	[ "What is the capital of New Zealand?", "Christ church", "Wellington", "Sydney", "Brisbane", "B"],
+	[ "What is the capital of Austraila?", "Sydney", "Melbourne", "Canberra", "Brisbane", "C"],
+	[ "What is the capital of Poland?", "Posnan", "Kiev", "Warsaw", "Kilkenny", "C"],
+	[ "What is the capital of Mexico?", "Mexico city", "Texas", "Dallas", "Santiago", "A"],
+	];
+function _(x){
+	return document.getElementById(x);
+}
+
+function percent() /// returns percentage of correct answers
+{
+    var perc = Math.round((correct/questions.length)*100);
+    return perc;
+}
+
+function renderQuestion()
+{
+	test=_("test");
+	if(pos>=questions.length)
+	{
+		test.innerHTML="<h2>Well done! You got "+correct+" out of "+questions.length+" questions right("+percent()+"%)</h2>";//print#correct out of 20
+		_("test_status").innerHTML+="You completing the quiz"; 
+		pos=0;
+		correct=0;
+		return false;
+	}
+
+	_("test_status").innerHTML = "Question "+(pos+1)+" of "+questions.length;
+	question = questions[pos][0];
+	chA = questions[pos][1];
+	chB = questions[pos][2];
+	chC = questions[pos][3];
+	chD = questions[pos][4];
+	test.innerHTML = "<h3>"+question+"</h3>";
+	test.innerHTML += "<input type='radio' name='choices' value='A'> "+chA+"<br>";
+	test.innerHTML += "<input type='radio' name='choices' value='B'> "+chB+"<br>";
+	test.innerHTML += "<input type='radio' name='choices' value='C'> "+chC+"<br>";
+	test.innerHTML += "<input type='radio' name='choices' value='D'> "+chD+"<br><br>";
+	test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
+}
+
+function checkAnswer(){
+	choices = document.getElementsByName("choices");
+	for(var i=0; i<choices.length; i++){
+		if(choices[i].checked){
+			choice = choices[i].value;
+		}
+	}
+	if(choice == questions[pos][5]){ ///counts which answer to take as correct
+		correct++;
+	}
+	pos++;
+	renderQuestion();
+}
+window.addEventListener("load", renderQuestion, false); ////end of javascript
+</script>
+<body>
+<title>Capital Cities of the world</title>
+<h2 id="test_status"></h2>
+<div id="test"></div>
+</body>
+</html>
